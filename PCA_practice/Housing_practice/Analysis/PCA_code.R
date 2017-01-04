@@ -84,16 +84,48 @@ names(x_vars) # check to ensure we removed the columns
 
 
 # remember that since the ranges on the variables
-prin_comp <- prcomp(x_vars, scale. = T)
+prin_comp <- prcomp(x_vars, scale. = T, center = T)
+
 
 names(prin_comp)
 # these are the available values in the PCA
 
 # let's first look at the scree: http://www.sthda.com/english/wiki/principal-component-analysis-in-r-prcomp-vs-princomp-r-software-and-data-mining
 fviz_screeplot(prin_comp) 
+plot(prin_comp, type = 'l') # simular but with eigenvalues
 
 # it looks like 4pcs can explain 80% of the variation in the dataset
 
 # let's look at the 
 prin_comp$rotation[,1:4] # look at only the 4 pcs we are interested in
+
+summary(prin_comp)
+
+loadings<- as.data.frame(prin_comp$rotation[,1:4])
+
+write.csv(loadings, 'Analysis/Data/pca_loadings.csv')
+
+# so about 4 pcs gets us to 80% variation explained (versus 12 variables)
+
+training_model <- as.data.frame(predict(prin_comp, x_vars))
+head(training_model)
+nrow(training_model)
+
+# now plug into linear model
+
+model<- lm(crime$crime ~ training_model$PC1 + training_model$PC2 + training_model$PC3 + training_model$PC4)
+summary(model)
+
+# we see that all but the 4th PC are statistically significant, so we need to rerun
+
+model_2<- lm(crime$crime ~ training_model$PC1 + training_model$PC2 + training_model$PC3)
+summary(model_2)
+
+# look at the results
+
+results<- predict(model, training_model, interval = 'predict' )
+results<- cbind(results, crime$crime)
+results<- as.data.frame(results)
+head(results)
+
 
