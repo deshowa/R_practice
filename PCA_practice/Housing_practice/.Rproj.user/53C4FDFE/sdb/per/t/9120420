@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "#### Practicing PCA in R with Boston dataset from the UCI machine learning lab ###\n\n# good guide: https://www.analyticsvidhya.com/blog/2016/03/practical-guide-principal-component-analysis-python/\n \n\n# load the libraries\n\nlibraries <- c ('ggplot2','Hmisc','factoextra')\nsapply(libraries, library, character.only = TRUE)\n\n\n# first, we will read in the file that we downloaded from: https://archive.ics.uci.edu/ml/datasets/Housing \ncrime <- read.csv('Analysis/Data/crime data.csv')\n\n# print a summary of the data\nsummary(crime)\n\n# first, let's make sure that the datatypes all make sense in the file\n\nsapply(crime, class )\n\nstr(crime) # does some of the same things as class, but more data\n\n  # the classes all look pretty nice here to me.   Idont think we will have to do any data type conversion\n\n# one of hte assumptions of PCA is that my features( attributes) are highly correlated, let's see what we can find:\n\ncorr_matrix <- rcorr(as.matrix(crime))\nprint(corr_matrix)\n  \n  # it looks like we have some very highly correlated values in the dataset.  This meets the main assumption and hence considers that we may have reduncancy in the data\n\n# it is always a goo idea to look at the distributions of the data in the dataset.\n# since we have no categorical values, this can be helpful in creating categories\n\n\nhist(crime, col = 'green' )\n\n# taking all in one view is a little tedious, let's set the view a little differently and add each variable \n\n# set the matrix\n\npar(mfrow = c(3,2)) # plot 6 at a time\n\nhist(crime$crime, col = 'dark green') # looks like a highly positively skewed variable, take a log to see , the data is kind of sparse, but low crime is prevalent\n\nhist(crime$zn, col= 'dark green') # to no surprise, this is skewed highly in thise case\n#hist(log(crime$crime), col = 'dark green')\nhist(crime$chas, col = 'dark green') # an indicator variable that must be removed from the dataset.\nhist(crime$nox, col = 'dark green')\nhist(crime$rm, col = 'dark green') # dwelling sizes are very normally distributed\nhist(crime$dis, col = 'dark green')\n# panel 2\npar(mfrow = c(3,2))\nhist(crime$rad, col = 'dark green')\nhist(crime$tax, col = 'dark green')\nhist(crime$ptratio, col = 'dark green')\nhist(crime$b, col = 'dark green')\nhist(crime$lstat, col = 'dark green')\nhist(crime$medv, col = 'dark green')\n\n\n# so, we know that the explanatory variable is highly-positively skewed, let's look at a qqplot\n\npar(mfrow = c(1,1))\nqqnorm(crime$crime)\n# obviously, just what we expected\nqqnorm(crime$crime**2)\nqqnorm(1/crime$crime)\nqqnorm(log(crime$crime))\nabline(0,1) # adds the 45 degree line\n# a log transform seems to perform the best, but not amazing with this data.  However, we have quite a few observations so, we will continue\n\n# now we create a dataset of x variables to plug into the PCA \n\nx_vars<- subset(crime, select = -c(crime, chas)) # removed the y variable and the indicator variable from the dataset\nnames(x_vars) # check to ensure we removed the columns\n\n# drop the categorical \n\n####################################\n##### Let's run the PCA ############\n####################################\n\n\n# remember that since the ranges on the variables\nprin_comp <- prcomp(x_vars, scale. = T)\n\nnames(prin_comp)\n# these are the available values in the PCA\n\n# let's first look at the scree: http://www.sthda.com/english/wiki/principal-component-analysis-in-r-prcomp-vs-princomp-r-software-and-data-mining\nfviz_screeplot(prin_comp) \n\n# it looks like 4pcs can explain 80% of the variation in the dataset\n\n# let's look at the \nprin_comp$rotation[,1:4] # look at only the 4 pcs we are interested in\n\n",
+    "created" : 1483491029098.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "206342764",
+    "id" : "9120420",
+    "lastKnownWriteTime" : 1483496655,
+    "last_content_update" : 1483496655620,
+    "path" : "C:/SMU Data science/R_practice/PCA_practice/Housing_practice/Analysis/PCA_code.R",
+    "project_path" : "Analysis/PCA_code.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
