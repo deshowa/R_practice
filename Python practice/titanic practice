@@ -1,0 +1,49 @@
+# -*- coding: utf-8 -*-
+"""
+Spyder Editor
+
+Python Practice: Aggregating data with Titanic data
+
+"""
+
+#%% Import the titanic dataset
+
+import pandas as pd
+
+titanic = pd.read_csv('C:\\SMU Data science\\Data Mining I\\DataMiningNotebooks\\data\\titanic.csv')
+
+# Look at the data
+#%% cleaning up the data
+
+# calculate the means
+
+# first determine if there are any missing values
+
+del titanic['Cabin']
+
+titanic_null =  titanic.isnull() 
+ 
+titanic_null.sum() # so, we can see that there are 177 null values in the Age variable, 687 in the cabin variable, and 2 on embarked
+
+titanic['Age'].isnull().sum()
+
+# so, we can drop the cabin variable
+
+
+
+# we can see that the embarked variable has null calues for 2 observations, so we will want to delete those
+
+titanic['Embarked'].dropna(inplace = True) # inplace true means make the updated to the dataframe right away
+
+#%%
+# check the dataset
+
+# fill in the NAs
+
+titanic = titanic.fillna(value = titanic.median())
+
+# check the dataframe
+
+titanic.info()
+
+

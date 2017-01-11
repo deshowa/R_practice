@@ -1,0 +1,51 @@
+# -*- coding: utf-8 -*-
+"""
+Spyder Editor
+
+Python Bridge Course - SMU data science - (probaboly for Data Mining I)
+"""
+
+# intro to python part II
+
+# he opens a terminal in specific file in folder - sets wd
+
+notebooks which python # doesnt seem to work for me
+
+
+#%% 
+
+print "hello world from interpreter"
+
+# crtl + D closes python
+
+#%%
+var1 = 32
+
+# can use the terminal to do alot of the coding
+
+#%%
+
+# can run from a text editor as well: he uses sublime text editor
+
+print "Hello World From File"
+
+# he saves the file in a directory
+
+# saves hello_world.py
+# sublime does syntaxes of python
+
+# goes back to editor
+
+# ls *.py # lists the python files
+
+# so then just type hello_world.py and it will open the file
+
+#%% jupyter notbook
+
+# opens local hosted web server, so that when you look at interpreted notebook, this is a development environment
+jupyter notebook # installed with anaconda - open from your directory
+
+# go to new python XX, shows you the IN [] can type code in box and see what output looks like
+# hello world from notebook
+
+# variables stored globally in session

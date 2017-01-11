@@ -1,0 +1,49 @@
+# list of reading for Data Mining I
+
+##################################
+#### Unit 1 ######################
+##################################
+
+
+http://vimeo.com/59324550 - Pandas 10 minute tour
+
+http://pandas.pydata.org/pandas-docs/version/0.15.2/tutorials.html - Pandas tutorial
+
+
+##################################
+#### Unit 2 ######################
+##################################
+
+https://sebastianraschka.com/index.html - sebastian raschka blog
+
+https://en.wikipedia.org/wiki/Cross_Industry_Standard_Process_for_Data_Mining - standard process for data mining
+
+
+https://sebastianraschka.com/Articles/2015_pca_in_3_steps.html - PCA in 3 simple steps
+
+https://sebastianraschka.com/Articles/2014_python_lda.html - LDA bit by bit
+
+http://seaborn.pydata.org/ - seaborn
+
+http://mpld3.github.io/ - mpld3
+
+https://plot.ly/ - plotly
+
+http://www.silota.com/site-search-blog/approximate-median-computation-big-data/ - running aggregations on big data
+
+http://pandas.pydata.org/pandas-docs/stable/visualization.html - pandas visualization example
+
+http://matplotlib.org/examples/index.html - matplotlib examples
+
+
+http://nbviewer.jupyter.org/github/mwaskom/seaborn/blob/master/examples/plotting_distributions.ipynb - not found ???
+
+
+##################################
+#### Unit 3 ######################
+##################################
+
+
+
+
+
